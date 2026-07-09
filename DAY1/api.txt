@@ -1,0 +1,6 @@
+Front end interact with the API and API fetches the 
+data form the backend, so user do not directly 
+interavt with the backend or database.
+
+1. API acts a connector bet backend and the frontend.
+2. API returns the response in the form of JSON.
