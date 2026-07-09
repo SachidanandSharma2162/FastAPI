@@ -1,0 +1,17 @@
+FastAPI  is  a  modern,  high-performance  Python  
+web  framework  for  building  APIs.  It  is  built  
+on  top  of  Starlette(ASGI framework for async) and 
+Pydantic (data validation via Python type hints).
+
+
+WSGI (Web Server Gateway Interface) and 
+ASGI (Asynchronous Server Gateway Interface) are 
+Python specifications that act as a bridge between 
+web servers and Python web applications. The primary 
+difference is that WSGI is designed for synchronous, 
+blocking applications, while ASGI is built to support 
+asynchronous, non-blocking applications and modern 
+protocols like WebSockets.
+
+Werkzeug is used to implement WSGI in Flask. (Guvicorn Server)
+Starlette is used to implement the ASGI in FastAPI. (Uvicorn Server)
