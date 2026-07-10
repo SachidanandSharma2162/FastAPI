@@ -1,0 +1,14 @@
+A request body is a portion os an HTTP request that 
+contains data sent by the client to the server. It is 
+typically used in HTTP methods like POST and PUT to 
+transmit structured data for the purpose of creating 
+or updating resources on the server. The server parse 
+the request body to extract the necessary information 
+and perform the intended operation.
+
+
+Since we are using Pydantic models in our FastAPI 
+project, model_dump() is an important method.
+
+model_dump() converts a Pydantic model object into a 
+Python dictionary.

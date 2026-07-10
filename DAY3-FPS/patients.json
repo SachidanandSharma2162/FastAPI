@@ -1,52 +1,62 @@
 {
-  "P001": {
-    "name": "Ananya Sharma",
-    "city": "Guwahati",
-    "age": 28,
-    "gender": "female",
-    "height": 1.65,
-    "weight": 90,
-    "bmi": 33.06,
-    "verdict": "Obese"
-  },
-  "P002": {
-    "name": "Ravi Mehta",
-    "city": "Mumbai",
-    "age": 35,
-    "gender": "male",
-    "height": 1.75,
-    "weight": 85,
-    "bmi": 27.76,
-    "verdict": "Overweight"
-  },
-  "P003": {
-    "name": "Sneha Kulkarni",
-    "city": "Pune",
-    "age": 22,
-    "gender": "female",
-    "height": 1.6,
-    "weight": 45,
-    "bmi": 17.58,
-    "verdict": "Underweight"
-  },
-  "P004": {
-    "name": "Arjun Verma",
-    "city": "Delhi",
-    "age": 30,
-    "gender": "male",
-    "height": 1.8,
-    "weight": 78,
-    "bmi": 24.07,
-    "verdict": "Normal"
-  },
-  "P005": {
-    "name": "Priya Singh",
-    "city": "Jaipur",
-    "age": 26,
-    "gender": "female",
-    "height": 1.55,
-    "weight": 60,
-    "bmi": 24.97,
-    "verdict": "Normal"
-  }
+    "P001": {
+        "name": "Ananya Sharma",
+        "city": "Guwahati",
+        "age": 28,
+        "gender": "female",
+        "height": 1.65,
+        "weight": 90,
+        "bmi": 33.06,
+        "verdict": "Obese"
+    },
+    "P002": {
+        "name": "Ravi Mehta",
+        "city": "Mumbai",
+        "age": 35,
+        "gender": "male",
+        "height": 1.75,
+        "weight": 85,
+        "bmi": 27.76,
+        "verdict": "Overweight"
+    },
+    "P003": {
+        "name": "Sneha Kulkarni",
+        "city": "Pune",
+        "age": 22,
+        "gender": "female",
+        "height": 1.6,
+        "weight": 45,
+        "bmi": 17.58,
+        "verdict": "Underweight"
+    },
+    "P004": {
+        "name": "Arjun Verma",
+        "city": "Delhi",
+        "age": 30,
+        "gender": "male",
+        "height": 1.8,
+        "weight": 78,
+        "bmi": 24.07,
+        "verdict": "Normal"
+    },
+    "P005": {
+        "name": "Priya Singh",
+        "city": "Jaipur",
+        "age": 26,
+        "gender": "female",
+        "height": 1.55,
+        "weight": 60,
+        "bmi": 24.97,
+        "verdict": "Normal"
+    },
+    "P006": {
+        "name": "Sachidanand Sharma",
+        "city": "Prayagraj",
+        "age": 24,
+        "gender": "male",
+        "height": 1.73,
+        "weight": 64.0,
+        "bmi": 21.38,
+        "verdict": "Normal"
+    }
 }

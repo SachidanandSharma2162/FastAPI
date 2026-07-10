@@ -1,20 +1,20 @@
 from fastapi import FastAPI, Path,HTTPException,Query
 import json
-
-
+from model import Patient
+from database import load_data,save_data
+from utility import calculate_verdict
 app=FastAPI()
+from fastapi.responses import JSONResponse
 
-def load_data():
-    with open("patients.json","r") as file:
-        data=json.load(file)
-
-    return data
 
 
 @app.get("/")
 def home():
-    return {"message":"This is home page"}
+    return {"message":"This is home page."}
 
+@app.get("/about")
+def about():
+    return {"message":"This is Patient Monitoring FastAPI System."}
 @app.get("/patients")
 def get_patients():
     data = load_data()
@@ -35,9 +35,9 @@ def sort_patient(sort_by:str=Query(...,description="sort on the basis of height,
     valid_fields=['height','weight','bmi','name','age']
     order_fields=['asc','desc']
     if sort_by not in valid_fields:
-        return HTTPException(status_code=400, detail=f'Invalid field, select from {valid_fields}')
+        raise HTTPException(status_code=400, detail=f'Invalid field, select from {valid_fields}')
     if order_by not in order_fields:
-        return HTTPException(status_code=400, detail=f'Invalid order, select from {order_fields}')
+        raise HTTPException(status_code=400, detail=f'Invalid order, select from {order_fields}')
     data=load_data()
     patients = list(data.values())
 
@@ -51,3 +51,16 @@ def sort_patient(sort_by:str=Query(...,description="sort on the basis of height,
     )
 
     return sorted_patients
+
+
+@app.post("/create")
+def create_patient(patient:Patient):
+    data=load_data()
+    if patient.id in data:
+        raise HTTPException(status_code=400,detail="Patient already exist!")
+    
+    data[patient.id]=patient.model_dump(exclude=['id'])
+
+    save_data(data=data)
+    
+    return JSONResponse(status_code=201,content={"message":"Patient created successfully!"})
