@@ -1,0 +1,144 @@
+Python do not have Type Validation.
+Python do not have Data Validation.
+
+We need to write lot of glue code for these in python.
+
+
+To handle this problem we use Pydantic library of 
+python which does the type and data validation 
+automatically.
+
+Type Validation Techniques:
+str
+int 
+float
+bool
+List[str]
+Dict[str,str]
+Optional[List[str]]
+
+Data Validation Techniques:
+AnyUrl
+EmailStr
+Annotated
+Field
+
+Avoid type coersion: 
+strict=True
+
+class Patient(BaseModel):
+
+    name: Annotated[str, Field(max_length=50, title='Name of the patient', description='Give the name of the patient in less than 50 chars', examples=['Nitish', 'Amit'])]
+    email: EmailStr
+    linkedin_url: AnyUrl
+    age: int = Field(gt=0, lt=120)
+    weight: Annotated[float, Field(gt=0, strict=True)]
+    married: Annotated[bool, Field(default=None, description='Is the patient married or not')]
+    allergies: Annotated[Optional[List[str]], Field(default=None, max_length=5)]
+    contact_details: Dict[str, str]
+
+
+Annotated and Field not only adds data validation but also metadata to a variable
+
+strict=True means does not allow type coersion.
+
+Field Validator:
+To validate the data on the basis of some custom conditions.
+field_validator is always a class method
+
+@field_validator('email')
+@classmethod
+def email_validator(cls, value):
+    valid_domains = ['hdfc.com', 'icici.com']
+    # abc@gmail.com
+    domain_name = value.split('@')[-1]
+    if domain_name not in valid_domains:
+        raise ValueError('Not a valid domain')
+    return value
+@field_validator('name')
+    @classmethod
+    def transform_name(cls, value):
+        return value.upper()
+    
+    @field_validator('age',mode="after")
+    @classmethod
+    def validate_age(cls,age):
+        if 0<age<120:
+            return age
+        else:
+            return ValueError("Age should be in between 0 to 120")
+
+mode="after" means condition is applied on the value afetr the type coersion.
+mode="before" means condition is applied on the value before the type coersion.
+
+
+@model_validator(mode="after")
+    def validate_emergency_contact(cls,model):
+        if model.age>60 and 'emergency' not in model.contact_details:
+            raise ValueError("Patient older than 60 must have an emergency contact.")
+        else:
+            return model
+
+model_validator is to to validate a complete model while field_validator is used to validate a particular field
+
+Computed fields: A field whose value is not specified 
+by the user instead, model uses existing field to 
+compute its value.
+
+@computed_field
+@property
+def bmi(self) -> float:
+    return round(self.weight / (self.height ** 2), 2)
+
+@computed_field
+@property
+def verdict(self) -> str:
+    bmi = self.bmi
+    if bmi < 18.5:
+        return "Underweight"
+    elif bmi < 25:
+        return "Normal"
+    elif bmi < 30:
+        return "Overweight"
+    else:
+        return "Obese"
+
+Nested Models:
+
+class Address(BaseModel):
+    house_number: Annotated[str, Field(min_length=1, max_length=10, description="House/building number")]
+    street: Annotated[str, Field(min_length=5, max_length=100, description="Street address")]
+    city: Annotated[str, Field(min_length=2, max_length=50, description="City name")]
+    postal_code: Annotated[str, Field(pattern=r"^\d{5,6}$", description="Valid postal code")]
+    state: Annotated[str, Field(min_length=2, max_length=50, description="State name")]
+    country: Annotated[str, Field(min_length=2, max_length=50, description="Country name")]
+
+class Patient(BaseModel):
+
+    name: Annotated[str, Field(max_length=50, title='Name of the patient', description='Give the name of the patient in less than 50 chars', examples=['Nitish', 'Amit'])]
+    email: EmailStr
+    linkedin_url: AnyUrl
+    age: int = Field(gt=0, lt=120)
+    weight: Annotated[float, Field(gt=0, strict=True,description="Weight should be in Kilograms")]
+    height: Annotated[float, Field(gt=0, strict=True,description="Height should be in Meters")]
+    married: Annotated[bool, Field(default=None, description='Is the patient married or not')]
+    allergies: Annotated[Optional[List[str]], Field(default=None, max_length=5)]
+    contact_details: Dict[str, str]
+    address: Address # Nested Model
+
+Pydantic Models can be exported as python dict or json using following method:
+
+patient_dict=patient1.model_dump() # pydantic to python dict
+print(patient_dict)
+print(type(patient_dict))
+
+patient_json=patient1.model_dump_json()
+print(patient_json)
+print(type(patient_json))
+
+we can also pass include=[] or exclude=[] list as a 
+parameter to specify which field to include or 
+exclude
+
+exclude_unset=True, it means the model will ignore 
+the unset values by the user an the time of inclusion.
