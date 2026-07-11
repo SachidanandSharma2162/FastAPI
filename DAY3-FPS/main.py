@@ -2,7 +2,6 @@ from fastapi import FastAPI, Path,HTTPException,Query
 import json
 from model import Patient
 from database import load_data,save_data
-from utility import calculate_verdict
 app=FastAPI()
 from fastapi.responses import JSONResponse
 

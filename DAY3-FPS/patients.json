@@ -1,62 +1,38 @@
 {
     "P001": {
-        "name": "Ananya Sharma",
-        "city": "Guwahati",
-        "age": 28,
-        "gender": "female",
-        "height": 1.65,
-        "weight": 90,
-        "bmi": 33.06,
-        "verdict": "Obese"
-    },
-    "P002": {
-        "name": "Ravi Mehta",
-        "city": "Mumbai",
-        "age": 35,
+        "name": "Amit Sharma",
+        "city": "Delhi",
+        "age": 45,
         "gender": "male",
         "height": 1.75,
-        "weight": 85,
-        "bmi": 27.76,
+        "weight": 78.0,
+        "address": {
+            "house_number": "A-102",
+            "street": "Laxmi Nagar Main Road",
+            "city": "Delhi",
+            "postal_code": "110092",
+            "state": "Delhi",
+            "country": "India"
+        },
+        "bmi": 25.47,
         "verdict": "Overweight"
     },
-    "P003": {
-        "name": "Sneha Kulkarni",
-        "city": "Pune",
-        "age": 22,
+    "P002": {
+        "name": "Neha Gupta",
+        "city": "Lucknow",
+        "age": 28,
         "gender": "female",
-        "height": 1.6,
-        "weight": 45,
-        "bmi": 17.58,
-        "verdict": "Underweight"
-    },
-    "P004": {
-        "name": "Arjun Verma",
-        "city": "Delhi",
-        "age": 30,
-        "gender": "male",
-        "height": 1.8,
-        "weight": 78,
-        "bmi": 24.07,
-        "verdict": "Normal"
-    },
-    "P005": {
-        "name": "Priya Singh",
-        "city": "Jaipur",
-        "age": 26,
-        "gender": "female",
-        "height": 1.55,
-        "weight": 60,
-        "bmi": 24.97,
-        "verdict": "Normal"
-    },
-    "P006": {
-        "name": "Sachidanand Sharma",
-        "city": "Prayagraj",
-        "age": 24,
-        "gender": "male",
-        "height": 1.73,
-        "weight": 64.0,
-        "bmi": 21.38,
+        "height": 1.62,
+        "weight": 56.0,
+        "address": {
+            "house_number": "B-204",
+            "street": "Gomti Nagar Extension",
+            "city": "Lucknow",
+            "postal_code": "226010",
+            "state": "Uttar Pradesh",
+            "country": "India"
+        },
+        "bmi": 21.34,
         "verdict": "Normal"
     }
 }

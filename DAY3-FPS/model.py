@@ -1,6 +1,14 @@
-from pydantic import BaseModel, Field,computed_field
-from typing import Literal
+from fastapi import HTTPException
+from pydantic import BaseModel, Field,computed_field,field_validator,ValueError
+from typing import Literal,Annotated
 
+class Address(BaseModel):
+    house_number: Annotated[str, Field(...,min_length=1, max_length=10, description="House/building number")]
+    street: Annotated[str, Field(...,min_length=5, max_length=100, description="Street address")]
+    city: Annotated[str, Field(...,min_length=2, max_length=50, description="City name")]
+    postal_code: Annotated[str, Field(...,pattern=r"^\d{5,6}$", description="Valid postal code")]
+    state: Annotated[str, Field(...,min_length=2, max_length=50, description="State name")]
+    country: Annotated[str, Field(...,min_length=2, max_length=50, description="Country name")]
 
 class Patient(BaseModel):
     id: str = Field(
@@ -70,3 +78,12 @@ class Patient(BaseModel):
             return "Overweight"
         else:
             return "Obese"
+    address: Address
+
+    @field_validator('age',mode="after")
+    @classmethod
+    def validate_age(cls,age): #afte the type coersion
+        if 0<age<120:
+            return age
+        else:
+            raise ValueError("Age should be between 0 and 120")
