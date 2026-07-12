@@ -109,4 +109,4 @@ def delete_patient_by_id(p_id:str=Path(...,description="ID of the Patient in the
     deleted_patient = data.pop(p_id)
     save_data(data=data)
 
-    return HTTPException(status_code=201,detail={"message": "Patient deleted successfully","deleted_patient": deleted_patient})
+    return JSONResponse(status_code=201,content={"message": "Patient deleted successfully","deleted_patient": deleted_patient})
