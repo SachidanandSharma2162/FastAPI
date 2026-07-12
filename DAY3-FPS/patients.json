@@ -16,23 +16,5 @@
         },
         "bmi": 21.22,
         "verdict": "Normal"
-    },
-    "P002": {
-        "name": "Neha Gupta",
-        "city": "Lucknow",
-        "age": 28,
-        "gender": "female",
-        "height": 1.62,
-        "weight": 56.0,
-        "address": {
-            "house_number": "B-204",
-            "street": "Gomti Nagar Extension",
-            "city": "Lucknow",
-            "postal_code": "226010",
-            "state": "Uttar Pradesh",
-            "country": "India"
-        },
-        "bmi": 21.34,
-        "verdict": "Normal"
     }
 }
