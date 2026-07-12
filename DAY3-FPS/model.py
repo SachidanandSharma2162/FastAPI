@@ -1,6 +1,6 @@
 from fastapi import HTTPException
-from pydantic import BaseModel, Field,computed_field,field_validator,ValueError
-from typing import Literal,Annotated
+from pydantic import BaseModel, Field,computed_field,field_validator
+from typing import Literal,Annotated,Optional
 
 class Address(BaseModel):
     house_number: Annotated[str, Field(...,min_length=1, max_length=10, description="House/building number")]
@@ -9,6 +9,15 @@ class Address(BaseModel):
     postal_code: Annotated[str, Field(...,pattern=r"^\d{5,6}$", description="Valid postal code")]
     state: Annotated[str, Field(...,min_length=2, max_length=50, description="State name")]
     country: Annotated[str, Field(...,min_length=2, max_length=50, description="Country name")]
+
+
+class AddressUpdate(BaseModel):
+    house_number: Annotated[Optional[str], Field(min_length=1, max_length=10, description="House/building number",default=None)]
+    street: Annotated[Optional[str], Field(min_length=5, max_length=100, description="Street address",default=None)]
+    city: Annotated[Optional[str], Field(min_length=2, max_length=50, description="City name",default=None)]
+    postal_code: Annotated[Optional[str], Field(pattern=r"^\d{5,6}$", description="Valid postal code",default=None)]
+    state: Annotated[Optional[str], Field(min_length=2, max_length=50, description="State name",default=None)]
+    country: Annotated[Optional[str], Field(min_length=2, max_length=50, description="Country name",default=None)]
 
 class Patient(BaseModel):
     id: str = Field(
@@ -87,3 +96,13 @@ class Patient(BaseModel):
             return age
         else:
             raise ValueError("Age should be between 0 and 120")
+        
+class PatientUpdate(BaseModel):
+
+    name: Annotated[Optional[str],Field(default=None)]
+    city: Annotated[Optional[str],Field(default=None)]
+    age: Annotated[Optional[int],Field(gt=0,lt=120,default=None)]
+    gender: Annotated[Optional[Literal["male","female","other"]],Field(default=None)]
+    height: Annotated[Optional[int],Field(default=None,gt=0)]
+    weight: Annotated[Optional[int],Field(default=None,gt=0)]
+    address: Annotated[Optional[AddressUpdate],Field(default=None)]

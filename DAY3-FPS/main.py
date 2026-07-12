@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Path,HTTPException,Query
 import json
-from model import Patient
+from model import Patient,PatientUpdate
 from database import load_data,save_data
 app=FastAPI()
 from fastapi.responses import JSONResponse
@@ -63,3 +63,34 @@ def create_patient(patient:Patient):
     save_data(data=data)
     
     return JSONResponse(status_code=201,content={"message":"Patient created successfully!"})
+
+@app.put("/update/{p_id}")
+def update_patient(p_id:str=Path(...,description="ID of the Patient in the DB.",example="P001"), patient:PatientUpdate=None):
+    data=load_data()
+
+    if p_id not in data:
+        raise HTTPException(status_code=404,detail=f"Patient with the id {p_id} is not present!")
+    
+    existing_patient=data[p_id]
+
+    update_data=patient.model_dump(exclude_unset=True)
+
+    for key,value in update_data.items():
+
+        if key == "address":
+    
+            existing_patient["address"].update(
+                value
+            )
+    
+        else:
+    
+            existing_patient[key] = value
+
+    existing_patient['id']=p_id
+    patient_pydantic_object=Patient(**existing_patient)
+    existing_patient=patient_pydantic_object.model_dump(exclude=['id'])
+    data[p_id]=existing_patient
+    save_data(data=data)
+    
+    return JSONResponse(status_code=201,content={"message":"Patient updated successfully!"})

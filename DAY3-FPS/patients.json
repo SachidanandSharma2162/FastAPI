@@ -5,7 +5,7 @@
         "age": 45,
         "gender": "male",
         "height": 1.75,
-        "weight": 78.0,
+        "weight": 65.0,
         "address": {
             "house_number": "A-102",
             "street": "Laxmi Nagar Main Road",
@@ -14,8 +14,8 @@
             "state": "Delhi",
             "country": "India"
         },
-        "bmi": 25.47,
-        "verdict": "Overweight"
+        "bmi": 21.22,
+        "verdict": "Normal"
     },
     "P002": {
         "name": "Neha Gupta",
@@ -33,6 +33,24 @@
             "country": "India"
         },
         "bmi": 21.34,
+        "verdict": "Normal"
+    },
+    "P003": {
+        "name": "Rahul Singh",
+        "city": "Mumbai",
+        "age": 52,
+        "gender": "male",
+        "height": 1.78,
+        "weight": 65.0,
+        "address": {
+            "house_number": "12C",
+            "street": "Andheri West Link Road",
+            "city": "Akola",
+            "postal_code": "400053",
+            "state": "Maharashtra",
+            "country": "India"
+        },
+        "bmi": 20.52,
         "verdict": "Normal"
     }
 }

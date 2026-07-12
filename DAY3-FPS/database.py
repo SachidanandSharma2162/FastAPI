@@ -14,3 +14,9 @@ def save_data(data):
             file,
             indent=4
         )
+
+def get_patient(patient_id):
+
+    data = load_data()
+
+    return data.get(patient_id)
