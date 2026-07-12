@@ -34,23 +34,5 @@
         },
         "bmi": 21.34,
         "verdict": "Normal"
-    },
-    "P003": {
-        "name": "Rahul Singh",
-        "city": "Mumbai",
-        "age": 52,
-        "gender": "male",
-        "height": 1.78,
-        "weight": 65.0,
-        "address": {
-            "house_number": "12C",
-            "street": "Andheri West Link Road",
-            "city": "Akola",
-            "postal_code": "400053",
-            "state": "Maharashtra",
-            "country": "India"
-        },
-        "bmi": 20.52,
-        "verdict": "Normal"
     }
 }
