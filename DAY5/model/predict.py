@@ -26,4 +26,4 @@ def predict_output(user_input:dict):
             "class_probabilities": class_probs
         }
     except Exception as e:
-        return JSONResponse(status_code=500,content=str(e))
+        raise Exception(str(e))
